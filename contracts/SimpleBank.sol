@@ -26,7 +26,7 @@ contract SimpleBank {
     //
     
     /* Add an argument for this event, an accountAddress */
-    event LogEnrolled();
+    event LogEnrolled(address accountAddress);
 
     /* Add 2 arguments for this event, an accountAddress and an amount */
     event LogDepositMade(address accountAddress, uint amount);
@@ -74,6 +74,7 @@ contract SimpleBank {
         if (enrolled[msg.sender] == false) {        
             balances[msg.sender] = 0;
             enrolled[msg.sender] = true;
+            emit LogEnrolled(msg.sender);
         }                
 
         return true;
